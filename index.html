@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lisp Interpreter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    #output {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      font-size: 14px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lisp Interpreter</h1>
+  <textarea id="input" placeholder="Write your Lisp code here..."></textarea>
+  <br>
+  <button id="run">Run</button>
+  <h3>Output:</h3>
+  <div id="output"></div>
+  
+  <script type="module">
+    import lisp from './lispInterpreter.js';
+
+    document.getElementById('run').addEventListener('click', () => {
+      const input = document.getElementById('input').value;
+      const outputDiv = document.getElementById('output');
+
+      try {
+        const result = lisp(input);
+        outputDiv.textContent = result;
+      } catch (error) {
+        outputDiv.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
